@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hatlas</title>
+  <meta name="description" content="Hatlas: Türkiye’deki toplu taşıma hatları, durakları ve açık verileri tek bir yerde." data-copy-attr="content=home.description">
+  <!-- Only our own files plus the OpenFreeMap tiles; MapLibre needs blob: workers. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://tiles.openfreemap.org; worker-src blob:; child-src blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/hatlas-logo.svg">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+  <!-- Built by `npm run css` from css/pages.src.css (Tailwind; the playground's look) -->
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<!-- The main page, from the user's playground/index.html (2026-11-18): top bar, the left column, the map.
+     All text comes from copy/tr.toml ([common], [home], [usage]); `npm run copy` writes it in.
+     Desktop: the column and the map are two rounded surfaces with room around them (the volunteer hub's spacing). -->
+<body class="flex h-dvh flex-col overflow-hidden text-[17px] leading-relaxed">
+  <header class="flex shrink-0 flex-wrap items-center gap-x-8 gap-y-3 border-b border-overlay bg-panel px-6 py-3 md:h-16 md:flex-nowrap md:px-8 md:py-0">
+    <a href="./" class="shrink-0" aria-label="Hatlas ana sayfası" data-copy-attr="aria-label=common.home_label"><img src="assets/hatlas-logo.svg" width="72" height="24" alt="Hatlas"></a>
+    <nav class="hidden gap-1 text-[15px] font-medium text-ink-2 lg:flex">
+      <a href="./" class="rounded-md bg-raised px-3 py-2 text-ink" aria-current="page" data-copy="common.nav_map">Harita</a><a href="katalog.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_catalog">Veri kataloğu</a><a href="sorunlar.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_issues">Sorunlar</a>
+    </nav>
+
+    <!-- Search: cities, operators and lines (js/app.js). On phones it takes its own row. -->
+    <div id="search" class="relative order-last w-full md:order-none md:mx-auto md:w-auto md:max-w-md md:flex-1">
+      <input id="searchInput" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Şehir, hat veya durak arayın…" aria-label="Şehir, hat veya durak ara" data-copy-attr="placeholder=home.search_placeholder; aria-label=home.search_label"
+             role="combobox" aria-expanded="false" aria-controls="searchResults" aria-autocomplete="list"
+             class="h-10 w-full rounded-lg border border-line bg-base px-4 text-[15px] placeholder:text-ink-3 focus:border-link focus:outline-none">
+      <div id="searchPanel" class="absolute top-12 right-0 left-0 z-20 rounded-lg border border-line bg-panel p-2 shadow-2xl shadow-black/60" hidden>
+        <ul id="searchResults" class="flex max-h-[60vh] flex-col gap-1 overflow-y-auto [scrollbar-color:var(--color-line-strong)_transparent] [scrollbar-width:thin]" role="listbox" aria-label="Arama sonuçları" data-copy-attr="aria-label=home.results_label"></ul>
+        <div id="searchFooter" class="mt-1 flex items-center justify-between gap-3 px-2 pt-1 pb-0.5" hidden>
+          <button type="button" id="searchMore" class="text-sm font-medium text-link hover:underline"></button>
+        </div>
+        <div id="searchEmpty" class="flex flex-col items-start gap-3 p-4" hidden>
+          <p class="font-medium" data-copy="home.nothing_found">Aradığınız şehir, durak veya işletmeciyi bulamadık.</p>
+          <p class="text-sm text-ink-2" data-copy="home.nothing_found_text">Eksik olduğunu düşünüyorsanız Hatlas’a katkıda bulunabilirsiniz.</p>
+          <a href="katki.html" class="mt-1 inline-flex h-10 items-center rounded-lg bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-hover" data-copy="common.contribute">Katkıda bulun</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="katki.html" class="ml-auto inline-flex h-10 shrink-0 items-center rounded-lg bg-accent px-4 text-[15px] font-semibold text-white hover:bg-accent-hover md:ml-0" data-copy="common.contribute">Katkıda bulun</a>
+  </header>
+
+  <!-- Desktop: the column on the left, the map on the right. Phones: the map on top, the column below, one scroll. -->
+  <main class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4 md:flex-row md:gap-6 md:overflow-hidden md:p-6">
+    <aside class="flex w-full shrink-0 flex-col gap-8 rounded-xl bg-panel pb-8 md:w-110 md:overflow-y-auto [scrollbar-color:var(--color-line-strong)_transparent] [scrollbar-width:thin]">
+      <div class="px-6 pt-8 md:px-8">
+        <h1 class="text-2xl font-medium text-balance" data-copy="home.title">Arayın ya da haritada gezinin.</h1>
+      </div>
+
+      <!-- Feeds that end soon or have ended, worked out from data/catalog.json with today's date -->
+      <div id="feedNotice" hidden>
+        <div id="feedNoticeBar" class="bg-warn px-6 py-3 text-black md:px-8">
+          <p><span id="feedNoticeText"></span> <button type="button" id="feedNoticeMore" class="font-semibold underline" aria-expanded="false" aria-controls="feedList" data-copy="home.feed_more">Ayrıntılar →</button></p>
+        </div>
+        <div id="feedList" class="mx-6 mt-4 flex flex-col gap-3 md:mx-8" hidden>
+          <ul id="feedListItems" class="divide-y divide-overlay"></ul>
+          <p id="feedChecked" class="text-sm text-ink-3"></p>
+        </div>
+      </div>
+
+      <!-- Katkıda bulun → Düzenle / Bildir / Güncelle (index.html?katki=…): what to pick on the map (js/app.js) -->
+      <section id="pickNotice" class="mx-6 flex flex-col gap-3 rounded-lg border border-[#1c3577] bg-soft p-5 text-soft-ink md:mx-8" hidden>
+        <h2 id="pickTitle" class="font-semibold text-ink"></h2>
+        <p id="pickHint" class="text-sm"></p>
+        <a href="./" class="w-fit text-sm font-medium underline underline-offset-2" data-copy="home.pick_cancel">Vazgeç</a>
+      </section>
+
+      <!-- What the map shows now (a city, an operator, a line or a stop), with the way to its full page -->
+      <section id="current" class="mx-6 flex flex-col gap-2 rounded-lg bg-overlay p-5 md:mx-8" aria-live="polite" hidden></section>
+
+      <div class="mx-6 flex flex-col gap-3 md:mx-8">
+        <button type="button" id="nearby" class="inline-flex h-10 w-fit items-center rounded-lg bg-soft px-4 text-sm font-semibold text-soft-ink hover:bg-[#16306e]" data-copy="home.nearby">Yakınımdaki hatlar</button>
+        <p class="text-sm text-ink-3" data-copy="home.nearby_note">Konumunuz yalnızca haritayı bulunduğunuz yere odaklamak için kullanılır.</p>
+      </div>
+
+      <div class="mt-auto flex flex-col gap-6 pt-4">
+      <!-- Opt-in usage statistics (the first Figma main page's usage card; js/usage.js shows it until a choice is made) -->
+      <section id="usageCard" class="mx-6 flex flex-col gap-3 rounded-lg bg-overlay p-5 md:mx-8" aria-labelledby="usageTitle" hidden>
+        <h2 id="usageTitle" class="font-semibold text-balance" data-copy="usage.title">Hatlas’ı iyileştirmemize yardımcı olun.</h2>
+        <p class="text-sm text-ink-2" data-copy="usage.text">Anonim kullanım istatistiklerini açarak Hatlas’ı nerelerde iyileştirebileceğimizi görmemize yardımcı olabilirsiniz. Verileriniz yalnızca Gizlilik Politikası kapsamında tutulur ve hiç kimseyle paylaşılmaz.</p>
+        <div class="mt-1 flex flex-wrap items-center gap-2">
+          <button type="button" id="usageAllow" class="inline-flex h-10 items-center rounded-lg bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-hover" data-copy="usage.allow">İzin ver</button>
+          <button type="button" id="usageLater" class="inline-flex h-10 items-center rounded-lg bg-soft px-4 text-sm font-semibold text-soft-ink hover:bg-[#16306e]" data-copy="usage.later">Daha sonra</button>
+          <a href="gizlilik.html#kullanim" class="ml-1 text-sm font-medium text-link hover:underline" data-copy="usage.details">Ayrıntılar</a>
+        </div>
+      </section>
+
+      <!-- The other pages (the top bar's links are hidden below lg) and the community on Reddit -->
+      <footer class="mx-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-3 md:mx-8">
+        <a href="katalog.html" class="hover:text-ink" data-copy="common.nav_catalog">Veri kataloğu</a>
+        <a href="sorunlar.html" class="hover:text-ink" data-copy="common.nav_issues">Sorunlar</a>
+        <a href="https://www.reddit.com/r/hatlas/" rel="noopener" class="hover:text-ink">r/hatlas</a>
+        <a href="https://github.com/egdmte/hatlas" rel="noopener" class="hover:text-ink" data-copy="home.footer_source">Kaynak kodu</a>
+        <a href="gizlilik.html#iletisim" class="hover:text-ink" data-copy="home.footer_contact">İletişim</a>
+        <a href="gizlilik.html" class="hover:text-ink" data-copy="home.footer_privacy">Gizlilik</a>
+      </footer>
+      </div>
+    </aside>
+
+    <section class="map-wrap relative order-first h-[55vh] shrink-0 overflow-hidden rounded-xl bg-raised md:order-none md:h-auto md:flex-1" aria-label="Harita" data-copy-attr="aria-label=home.map_label">
+      <div id="map" class="h-full w-full"></div>
+      <!-- Loading: the logo's orbit and globe turning (Figma "Group 31", node 7:20) -->
+      <div id="loader" class="pointer-events-none absolute inset-0 z-[2] grid place-items-center" role="status" aria-live="polite">
+        <span class="loader-mark" aria-hidden="true">
+          <img class="loader-orbit" src="assets/loader-orbit.svg" width="20" height="20" alt="">
+          <img class="loader-globe" src="assets/loader-globe.svg" width="13" height="13" alt="">
+        </span>
+        <span class="sr-only" data-copy="home.loading">Yükleniyor…</span>
+      </div>
+      <!-- "Bu veritabanının düzeltilmeye ihtiyacı var" (user's design, 2026-11-17) -->
+      <div id="dataBanner" class="absolute top-4 right-4 left-4 z-[3] flex min-h-[34px] items-center gap-3 rounded-md border border-[#C20F10] bg-[#5D262B] py-2 pr-2 pl-4 text-[15px] leading-snug text-white" role="status" hidden>
+        <p class="flex-1 [&_a]:underline [&_a]:underline-offset-2" data-copy="home.banner">Bu verilerin elden geçmesi gerekiyor. <a href="katki.html">Bu şehirde yaşıyorsanız siz de katkıda bulunabilirsiniz.</a></p>
+        <button type="button" id="dataBannerClose" class="size-6 shrink-0 rounded text-lg leading-none text-[#e8c9cb] hover:bg-white/10 hover:text-white" aria-label="Uyarıyı kapat" data-copy-attr="aria-label=home.banner_close">×</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="vendor/maplibre/maplibre-gl.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/soon.js"></script>
+  <script src="js/usage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-copy="verify.page_title">Bu doğru mu? · Hatlas</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/hatlas-logo.svg">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Built by `npm run css` from css/pages.src.css -->
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/copy.js" defer></script>
+  <script src="js/usage.js" defer></script>
+  <script src="js/contrib.js" defer></script>
+  <script src="js/pages.js" defer></script>
+</head>
+<!-- "Bu doğru mu?" (the volunteer dashboard's voting part, playground/gonullu.html): suggestions from everyone,
+     checked by everyone; three "doğru" from different connections publish one (user, 2026-11-18).
+     dogrula.html?sehir=kocaeli&hedef=30262 shows only one stop's (or line's) suggestions. -->
+<body class="min-h-dvh text-[17px] leading-relaxed" data-page="verify">
+  <!-- The top bar (same on every page; the text is in copy/tr.toml [common]) -->
+  <header class="flex h-16 shrink-0 items-center gap-6 border-b border-overlay bg-panel px-6 md:gap-8 md:px-8">
+    <a href="./" class="shrink-0" aria-label="Hatlas ana sayfası" data-copy-attr="aria-label=common.home_label"><img src="assets/hatlas-logo.svg" width="72" height="24" alt="Hatlas"></a>
+    <nav class="flex gap-1 text-[15px] font-medium text-ink-2">
+      <a href="./" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_map">Harita</a><a href="katalog.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_catalog">Veri kataloğu</a><a href="sorunlar.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_issues">Sorunlar</a>
+    </nav>
+    <div class="flex-1"></div>
+    <a href="katki.html" class="inline-flex h-10 shrink-0 items-center rounded-lg bg-accent px-4 text-[15px] font-semibold text-white hover:bg-accent-hover" data-copy="common.contribute">Katkıda bulun</a>
+  </header>
+
+  <main class="mx-auto flex flex-col gap-14 px-6 pt-14 pb-28 md:px-12 lg:gap-20 lg:pt-20 max-w-2xl lg:gap-16">
+    <section class="flex flex-col gap-4">
+      <h1 class="text-3xl font-medium md:text-4xl" data-copy="verify.title">Bu doğru mu?</h1>
+      <p class="text-lg text-ink-2" data-copy="verify.intro">Bir öneri, farklı internet bağlantılarından üç kişi “Doğru” dediğinde yayınlanır; üç kişi “Yanlış” derse reddedilir. Herkesin bakabilmesi için hiçbir öneri bir günden önce yayınlanmaz. Emin olmadıklarınızı atlayabilirsiniz.</p>
+    </section>
+    <div id="verify" class="flex flex-col gap-12"></div>
+    <p class="text-[15px] text-ink-3 [&_a]:text-link [&_a:hover]:underline" data-copy="verify.footer">Kendi önerilerinize oy veremezsiniz. Önerileriniz ve oylarınız geçici adınızla listelenir. <a href="gizlilik.html">Neleri saklıyoruz?</a></p>
+  </main>
+</body>
+</html>

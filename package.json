@@ -1,0 +1,19 @@
+{
+  "name": "hatlas",
+  "version": "1.0.0",
+  "description": "Hatlas: Turkish transit data atlas. `npm run copy` puts copy/tr.toml (all the text) into the pages; `npm run css` builds css/pages.css (needs `npm install` in playground/ once).",
+  "main": "index.js",
+  "scripts": {
+    "copy": "py -3 tools/copy.py",
+    "copy:check": "py -3 tools/copy.py --check",
+    "css": "node playground/node_modules/@tailwindcss/cli/dist/index.mjs -i css/pages.src.css -o css/pages.css --minify",
+    "css:watch": "node playground/node_modules/@tailwindcss/cli/dist/index.mjs -i css/pages.src.css -o css/pages.css --watch=always"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "maplibre-gl": "^5.24.1"
+  }
+}

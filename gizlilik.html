@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-copy="privacy.page_title">Gizlilik · Hatlas</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/hatlas-logo.svg">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Built by `npm run css` from css/pages.src.css -->
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/copy.js" defer></script>
+  <script src="js/usage.js" defer></script>
+</head>
+<!-- The short privacy note (KVKK), required before contributions store anything. It describes exactly what
+     api/hatlas_api.py and the site do; change both together. Not legal advice: the user decides the final text. -->
+<body class="min-h-dvh text-[17px] leading-relaxed">
+  <!-- The top bar (same on every page; the text is in copy/tr.toml [common]) -->
+  <header class="flex h-16 shrink-0 items-center gap-6 border-b border-overlay bg-panel px-6 md:gap-8 md:px-8">
+    <a href="./" class="shrink-0" aria-label="Hatlas ana sayfası" data-copy-attr="aria-label=common.home_label"><img src="assets/hatlas-logo.svg" width="72" height="24" alt="Hatlas"></a>
+    <nav class="flex gap-1 text-[15px] font-medium text-ink-2">
+      <a href="./" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_map">Harita</a><a href="katalog.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_catalog">Veri kataloğu</a><a href="sorunlar.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_issues">Sorunlar</a>
+    </nav>
+  </header>
+
+  <main class="mx-auto flex flex-col gap-14 px-6 pt-14 pb-28 md:px-12 lg:gap-20 lg:pt-20 max-w-2xl lg:gap-16 [&_p_a]:text-link [&_p_a:hover]:underline [&_li_a]:text-link [&_strong]:font-semibold [&_strong]:text-ink">
+    <section class="flex flex-col gap-4">
+      <h1 class="text-3xl font-medium md:text-4xl" data-copy="privacy.title">Gizlilik</h1>
+      <p class="text-lg text-ink-2" data-copy="privacy.intro">Hatlas’ı gezmek ve verileri incelemek için hiçbir bilgi paylaşmanız gerekmez: hesap yok, çerez yok; siz izin vermedikçe kullanım istatistiği bile tutulmaz. Yalnızca bir öneri gönderdiğinizde veya oy verdiğinizde aşağıdakiler kaydedilir.</p>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl" data-copy="privacy.suggest_title">Öneri gönderdiğinizde veya oy verdiğinizde</h2>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-ink-2">
+        <li data-copy="privacy.suggest_1"><strong>Geçici bir ad</strong> (örneğin ~2026‑48213) ve yalnızca bu tarayıcıda tutulan rastgele bir anahtar. Önerileriniz ve oylarınız bu adla görünür; gerçek kimliğinizle hiçbir bağlantısı yoktur.</li>
+        <li data-copy="privacy.suggest_2"><strong>IP adresiniz</strong>, yalnızca kötüye kullanımı önlemek amacıyla saklanır ve <strong>90 gün</strong> sonra kendiliğinden silinir. Hiçbir sayfada gösterilmez ve kimseyle paylaşılmaz.</li>
+        <li data-copy="privacy.suggest_3"><strong>Bağlantınızın şifrelenmiş özeti</strong>: Aynı internet bağlantısından gelen oyların yalnızca bir kez sayılması için kullanılır. Bu özetten IP adresinize geri dönülemez; karara bağlanan önerilerde 90 gün sonra silinir.</li>
+        <li data-copy="privacy.suggest_4"><strong>Önerinin kendisi</strong> (durak bilgisi, ad, bildirim metni ve kaynak bağlantısı) CC BY-SA 4.0 lisansıyla herkese açık olarak yayımlanır.</li>
+      </ul>
+    </section>
+
+    <!-- js/usage.js and api/hatlas_api.py (post_usage, check_usage) do exactly this; change them together. -->
+    <section id="kullanim" class="flex scroll-mt-10 flex-col gap-4">
+      <h2 class="text-xl" data-copy="privacy.usage_title">Kullanım istatistikleri (isteğe bağlı)</h2>
+      <p class="text-ink-2" data-copy="privacy.usage_intro">Ana sayfadaki “Hatlas’ı iyileştirmemize yardımcı olun” kartında <strong>İzin ver</strong> seçeneğine basarsanız bu tarayıcı, Hatlas’ın neleri geliştirmesi gerektiğini anlayabilmemiz için yalnızca şu bilgileri gönderir:</p>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-ink-2">
+        <li data-copy="privacy.usage_1">Hangi sayfanın açıldığı ve sayfada görüntülenen şehir, işletmeci, hat veya durak.</li>
+        <li data-copy="privacy.usage_2">Haritada seçilen şehir, işletmeci, hat veya durak ile indirilen veri dosyaları.</li>
+        <li data-copy="privacy.usage_3">Ana sayfada <strong>sonuç vermeyen aramalar</strong> (en fazla 40 karakter). E-posta, web adresi veya telefon numarasına benzeyen ifadeler kaydedilmez.</li>
+        <li data-copy="privacy.usage_4">“Yakınımdaki hatlar” düğmesine basıldığı bilgisi (konumunuzun kendisi değil).</li>
+      </ul>
+      <p class="text-ink-2" data-copy="privacy.usage_counted">Bu bilgiler yalnızca <strong>günlük toplamlar halinde sayılır</strong> (“bugün bu durak 12 kez açıldı” gibi). IP adresiniz, geçici adınız, bir kimlik numarası ya da iki ziyaretinizi birbirine bağlayabilecek herhangi bir veri kesinlikle bunlarla birlikte saklanmaz. Arama kayıtları 90 gün, günlük sayılar ise 400 gün sonra silinir. Tarayıcınız “Global Privacy Control” sinyali gönderiyorsa size hiç sorulmaz ve aşağıdan kendiniz açmadıkça sayım yapılmaz. Tercihiniz yalnızca bu tarayıcıda saklanır.</p>
+      <div class="mt-2 flex flex-col gap-3 rounded-xl bg-overlay p-6">
+        <button type="button" id="usageSwitch" role="switch" aria-checked="false" aria-describedby="usageState"
+                class="group inline-flex w-fit items-center gap-3 font-medium disabled:opacity-60">
+          <span class="relative inline-flex h-6 w-11 shrink-0 rounded-full bg-line-strong transition-colors group-aria-checked:bg-accent">
+            <span class="absolute top-0.5 left-0.5 size-5 rounded-full bg-white transition-transform group-aria-checked:translate-x-5"></span>
+          </span>
+          <span data-copy="usage.switch">Kullanım istatistikleri</span>
+        </button>
+        <p id="usageState" class="text-sm text-ink-2" data-copy="usage.state_off">Bu tarayıcıdan hiçbir kullanım verisi gönderilmiyor.</p>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl" data-copy="privacy.not_kept_title">Saklamadıklarımız</h2>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-ink-2">
+        <li data-copy="privacy.not_kept_1">Çerez veya reklam takipçisi yok; siz izin vermedikçe ziyaret istatistiği de tutulmuyor.</li>
+        <li data-copy="privacy.not_kept_2">“Yakınımdaki hatlar” özelliği konumunuzu yalnızca haritayı bulunduğunuz yere götürmek için kullanır; konum bilginiz hiçbir sunucuya gönderilmez.</li>
+        <li data-copy="privacy.not_kept_3">Harita görselleri OpenFreeMap üzerinden yüklenir; bu nedenle harita isteklerini onların sunucusu görür.</li>
+      </ul>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="text-xl" data-copy="privacy.rights_title">Haklarınızı kullanma</h2>
+      <p class="text-ink-2" data-copy="privacy.rights">Gönderdiğiniz önerileri “Bu doğru mu?” sayfasındaki listeden dilediğiniz zaman kendiniz geri çekebilirsiniz. Geçici adınızla ilişkili verilerin silinmesini istemek veya neler saklandığını öğrenmek için aşağıdaki adreslerden birine yazabilirsiniz; geçici adınızı belirtmeniz yeterlidir. Reddit hesabınız yoksa e-posta en kolayıdır.</p>
+    </section>
+
+    <!-- Contact (user, 2026-11-19): linked from the main page's footer and the katkı page as gizlilik.html#iletisim -->
+    <section id="iletisim" class="flex scroll-mt-10 flex-col gap-4">
+      <h2 class="text-xl" data-copy="privacy.contact_title">İletişim</h2>
+      <p class="text-ink-2" data-copy="privacy.contact_intro">Soru, öneri, verideki bir hata ya da gizlilik talebi için bize şuradan ulaşabilirsiniz:</p>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-ink-2">
+        <li data-copy="privacy.contact_1"><a href="https://www.reddit.com/r/hatlas/" rel="noopener">r/hatlas</a> topluluğu</li>
+        <li data-copy="privacy.contact_2">Reddit’te <a href="https://www.reddit.com/user/egedemete/" rel="noopener">u/egedemete</a></li>
+        <li data-copy="privacy.contact_3">E-posta: <a href="mailto:iletisim@avartech.net">iletisim@avartech.net</a></li>
+        <li data-copy="privacy.contact_4">E-posta: <a href="mailto:egemen.pers@gmail.com">egemen.pers@gmail.com</a></li>
+      </ul>
+    </section>
+
+    <p class="text-sm text-ink-3" data-copy="privacy.updated">Hatlas bir Avar projesidir. Son güncelleme: 19 Kasım 2026.</p>
+  </main>
+</body>
+</html>

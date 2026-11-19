@@ -1,0 +1,3 @@
+# Hatlas is public since the launch post (2026-11-19): search engines may list every page.
+User-agent: *
+Allow: /

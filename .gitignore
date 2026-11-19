@@ -1,0 +1,15 @@
+node_modules/
+data.new/
+data.old/
+__pycache__/
+
+# Kept on the maintainer's machine, not in the public repository:
+# the working log (server notes, decisions), the server setup and the deploy script for that server,
+# the design playground, editor and assistant settings, and backup copies of the copy file.
+PROJECT_LOG.md
+deploy/
+tools/deploy.py
+playground/
+.claude/
+.vscode/
+copy/*Kopya*

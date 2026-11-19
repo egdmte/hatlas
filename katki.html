@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-copy="contribute.page_title">Katkıda bulun · Hatlas</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/hatlas-logo.svg">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Built by `npm run css` from css/pages.src.css -->
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/copy.js" defer></script>
+  <script src="js/usage.js" defer></script>
+  <script src="js/soon.js" defer></script>
+</head>
+<!-- Choosing the kind of change (Figma "Desktop - 9"; was index.html#katki until 2026-11-18).
+     Contributing doesn't need an account (MediaWiki-style, user's decision 2026-11-17): edits without signing
+     in go out under a temporary name and are checked by everyone ("Bu doğru mu?"); signing in adds photos. -->
+<body class="min-h-dvh text-[17px] leading-relaxed">
+  <!-- The top bar (same on every page; the text is in copy/tr.toml [common]) -->
+  <header class="flex h-16 shrink-0 items-center gap-6 border-b border-overlay bg-panel px-6 md:gap-8 md:px-8">
+    <a href="./" class="shrink-0" aria-label="Hatlas ana sayfası" data-copy-attr="aria-label=common.home_label"><img src="assets/hatlas-logo.svg" width="72" height="24" alt="Hatlas"></a>
+    <nav class="flex gap-1 text-[15px] font-medium text-ink-2">
+      <a href="./" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_map">Harita</a><a href="katalog.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_catalog">Veri kataloğu</a><a href="sorunlar.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_issues">Sorunlar</a>
+    </nav>
+  </header>
+
+  <main class="mx-auto flex w-full max-w-[1040px] flex-col gap-10 px-6 pt-10 pb-28 md:px-12 lg:pt-14">
+    <a href="./" class="w-fit text-[15px] text-ink-2 hover:text-ink" data-copy="common.back_to_map">← Haritaya dön</a>
+
+    <!-- The choice on the left; the guest note and the licence in a column beside it -->
+    <div class="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,400px)] md:grid-rows-[auto_1fr] md:gap-x-10">
+      <section class="rounded-xl bg-panel p-6 md:row-span-2 md:p-8" aria-labelledby="changeTitle">
+        <h1 id="changeTitle" class="text-2xl font-medium text-balance" data-copy="contribute.title">Yapmak istediğiniz değişikliği seçin</h1>
+        <!-- Each opens the map in a picking mode (index.html?katki=…, js/app.js), then the stop's, line's or city's form (js/contrib.js). -->
+        <ul class="mt-8 flex flex-col gap-3">
+          <li><a href="./?katki=guncelle" class="flex w-full items-start gap-4 rounded-lg p-5 text-left bg-overlay hover:bg-[#262c38]">
+            <img class="mt-1 size-5 shrink-0 object-contain" src="assets/icons/update.svg" width="18" height="18" alt="">
+            <span class="flex flex-col gap-1.5"><span class="font-semibold" data-copy="contribute.update">Güncelle</span>
+            <span class="text-[15px] leading-relaxed text-ink-2" data-copy="contribute.update_text">Değişen güzergâhları haritada çizin, kaldırılan durakları bildirin veya yeni bir durak ekleyin.</span></span>
+          </a></li>
+          <li><a href="./?katki=duzenle" class="flex w-full items-start gap-4 rounded-lg p-5 text-left bg-overlay hover:bg-[#262c38]">
+            <img class="mt-1 size-5 shrink-0 object-contain" src="assets/icons/edit.svg" width="18" height="18" alt="">
+            <span class="flex flex-col gap-1.5"><span class="font-semibold" data-copy="contribute.edit">Düzenle</span>
+            <span class="text-[15px] leading-relaxed text-ink-2" data-copy="contribute.edit_text">Durak adlarını düzeltin veya erişilebilirlik bilgisi ekleyin. Başlamak için haritadan bir durak seçin.</span></span>
+          </a></li>
+          <li><a href="./?katki=bildir" class="flex w-full items-start gap-4 rounded-lg p-5 text-left bg-overlay hover:bg-[#262c38]">
+            <img class="mt-1 size-5 shrink-0 object-contain" src="assets/icons/report.svg" width="12" height="20" alt="">
+            <span class="flex flex-col gap-1.5"><span class="font-semibold" data-copy="contribute.report">Bildir</span>
+            <span class="text-[15px] leading-relaxed text-ink-2" data-copy="contribute.report_text">Planlı çalışmaları, resmi duyuruları veya artık çalışmayan hatları bildirin. Başlamak için haritadan ilgili hattı veya durağı seçin.</span></span>
+          </a></li>
+          <li><a href="dogrula.html" class="flex w-full items-start gap-4 rounded-lg p-5 text-left bg-soft text-soft-ink hover:bg-[#16306e]">
+            <img class="mt-1 size-5 shrink-0 object-contain" src="assets/icons/changes.svg" width="18" height="18" alt="">
+            <span class="flex flex-col gap-1.5"><span class="font-semibold text-ink" data-copy="contribute.verify">Bu doğru mu?</span>
+            <span class="text-[15px] leading-relaxed" data-copy="contribute.verify_text">Diğer gönüllülerin önerilerini inceleyip doğru, yanlış veya bilmiyorum diyerek oylayın.</span></span>
+          </a></li>
+        </ul>
+      </section>
+
+      <aside class="flex flex-col gap-4 rounded-xl border border-[#1c3577] bg-soft p-6 text-[15px] leading-relaxed text-soft-ink md:p-7 [&_p_a]:underline [&_p_a]:underline-offset-2 [&_strong]:font-semibold [&_strong]:text-ink" aria-label="Giriş yapmadan katkı" data-copy-attr="aria-label=contribute.guest_label">
+        <p data-copy="contribute.guest"><strong>Şu an giriş yapmadan katkıda bulunuyorsunuz.</strong> Önerileriniz geçici bir adla (örneğin ~2026‑48213) görünür ve farklı internet bağlantılarından üç kişi onayladığında, en erken bir gün sonra herkese açık hale gelir. <a href="gizlilik.html">Neleri saklıyoruz?</a></p>
+        <p data-copy="contribute.guest_more">Giriş yaptığınızda duraklara fotoğraf ekleyebilir ve tüm katkılarınızı tek yerden takip edebilirsiniz.</p>
+        <a href="#" class="inline-flex h-10 w-fit items-center rounded-lg bg-[#16306e] px-4 text-sm font-semibold text-soft-ink hover:bg-[#1c3a86]" data-soon><span data-copy="contribute.sign_in">Giriş yap / Kayıt ol</span><span class="ml-2 text-xs font-medium opacity-70" data-copy="common.soon">Yakında</span></a>
+        <p class="mt-2 border-t border-[#1c3577] pt-5" data-copy="contribute.community">Aklınıza takılan bir soru, öneri veya sorun mu var? <a href="https://www.reddit.com/r/hatlas/" rel="noopener">r/hatlas</a> topluluğunda buluşalım ya da <a href="gizlilik.html#iletisim">bize yazın</a>.</p>
+      </aside>
+
+      <footer class="flex items-start gap-4 md:self-end">
+        <img class="h-[34px] w-24 shrink-0 rounded" src="assets/cc-by-sa.png" width="96" height="34" alt="CC BY-SA 4.0">
+        <p class="text-[13px] leading-relaxed text-ink-3" data-copy="common.cc_note">Katkılarınız herkesin yararlanabilmesi için CC BY-SA 4.0 lisansıyla paylaşılır. Gönderdiğiniz değişikliklerin ayrıca izin alınmadan düzenlenebileceğini veya kaldırılabileceğini kabul etmiş olursunuz.</p>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

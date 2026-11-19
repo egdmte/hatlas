@@ -1,0 +1,115 @@
+/* Hatlas pages (sehir, isletme, hat, durak.html): Tailwind v4 source, built into css/pages.css.
+   Build:  npm run css        (once, minified)
+           npm run css:watch  (while editing)
+   The tokens are the playground's (playground/src/input.css); change both together.
+   Only the files named below are scanned for class names. */
+@import "tailwindcss" source(none);
+@source "../index.html";
+@source "../sehir.html";
+@source "../isletme.html";
+@source "../hat.html";
+@source "../durak.html";
+@source "../katki.html";
+@source "../fotograf-kurallari.html";
+@source "../js/app.js";
+@source "../js/pages.js";
+@source "../js/soon.js";
+@source "../js/contrib.js";
+@source "../js/usage.js";
+@source "../dogrula.html";
+@source "../gizlilik.html";
+@source "../katalog.html";
+@source "../sorunlar.html";
+
+/* Inter (OFL, fonts/Inter-OFL.txt), variable: weights 100–900 in one file. Relative to css/pages.css. */
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Surfaces, darkest to lightest */
+  --color-base: #07090d;
+  --color-panel: #0e1117;
+  --color-raised: #151922;
+  --color-overlay: #1c212c;
+  --color-line: #232935;
+  --color-line-strong: #343b4a;
+
+  /* Text (contrast measured on panel) */
+  --color-ink: #f2f4f8;
+  --color-ink-2: #b4bbc8;
+  --color-ink-3: #8a93a3;
+
+  /* The kit's blue for actions */
+  --color-accent: #0043eb;
+  --color-accent-hover: #1452f5;
+  --color-link: #8eaeff;
+  --color-soft: #0f1d45;
+  --color-soft-ink: #b8ccff;
+
+  /* Feed health */
+  --color-ok: #8eaeff;
+  --color-warn: #f5a524;
+  --color-crit: #ff6b5e;
+  --color-none: #6b7280;
+}
+
+@layer base {
+  html {
+    @apply bg-base text-ink font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+/* ---------- What utilities can't reach: MapLibre's own controls and popups, the loader, the location dot.
+   Unlayered, so they win over MapLibre's stylesheet (and over utilities, which never style these). ---------- */
+
+/* Map credits: MapLibre's compact style makes plain text black ("Data from"), so these are as specific as its own */
+.maplibregl-ctrl.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-attrib.maplibregl-compact { background: rgba(10, 12, 17, .78) !important; color: var(--color-ink-3); font-family: var(--font-sans); font-size: 12px; }
+.maplibregl-ctrl.maplibregl-ctrl-attrib a,
+.maplibregl-ctrl-attrib.maplibregl-compact a { color: #c4c4c4; }
+.maplibregl-ctrl-attrib-button { filter: invert(1) brightness(.8); }
+.maplibregl-ctrl-group { background: var(--color-panel); border: 1px solid var(--color-line); box-shadow: none !important; }
+.maplibregl-ctrl-group button + button { border-top-color: var(--color-line); }
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(1) brightness(.75); }
+.maplibregl-popup-content { background: var(--color-panel); color: var(--color-ink); border-radius: 10px; padding: 12px 14px; font-family: var(--font-sans); font-size: 15px; }
+.maplibregl-popup-tip { border-top-color: var(--color-panel) !important; border-bottom-color: var(--color-panel) !important; }
+.maplibregl-popup-close-button { color: var(--color-ink-3); font-size: 20px; width: 28px; height: 28px; border-radius: 6px; }
+.maplibregl-popup-close-button:hover { background: rgba(255, 255, 255, .08); color: var(--color-ink); }
+
+/* The stop card on the map: glass (rgba(0,0,0,.29) + 32px blur), #474747 border, 10 corners (Figma "Desktop - 5") */
+.stop-popup .maplibregl-popup-content {
+  width: 256px; padding: 18px 16px 16px; border: 1px solid #474747; border-radius: 10px;
+  background: rgba(0, 0, 0, .29); -webkit-backdrop-filter: blur(32px); backdrop-filter: blur(32px);
+}
+.stop-popup .maplibregl-popup-tip { display: none; }
+.stop-popup .maplibregl-popup-close-button { top: 6px; right: 6px; }
+
+/* The zoom buttons move below the "needs fixing" banner while it shows (height set by js/app.js) */
+.map-wrap.has-banner .maplibregl-ctrl-top-right { top: calc(var(--banner-h, 34px) + 22px); }
+
+/* "Yakınımdaki hatlar": where you are */
+.here-dot { width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 6px rgba(255, 255, 255, .18); }
+
+/* Loader: the logo animated (Figma "Group 31", node 7:20, 2 s loop). Orbit (20.096 x 20) and globe
+   (13.179 x 12.886, offset 3.534 / 3.763 so both share a centre) each turn once counter-clockwise, then rest. */
+.loader-mark { --s: 2.4; position: relative; display: block; width: calc(20.096px * var(--s)); height: calc(20px * var(--s)); }
+.loader-mark img { position: absolute; display: block; transform-origin: 50% 50%; animation-duration: 2s; animation-iteration-count: infinite; }
+.loader-orbit { left: 0; top: 0; width: calc(20.096px * var(--s)); height: calc(20px * var(--s)); animation-name: hatlas-orbit; }
+.loader-globe { left: calc(3.534px * var(--s)); top: calc(3.763px * var(--s)); width: calc(13.179px * var(--s)); height: calc(12.886px * var(--s)); animation-name: hatlas-globe; }
+@keyframes hatlas-orbit {
+  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.684, -0.006, 0.006, 0.988); }
+  74.951%, 100% { transform: rotate(-360deg); }
+}
+@keyframes hatlas-globe {
+  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.745, -0.247, 0.345, 1.294); }
+  64.288%, 100% { transform: rotate(-360deg); }
+}
+@media (prefers-reduced-motion: reduce) { .loader-mark img { animation: none; } }
+[hidden] { display: none !important; }

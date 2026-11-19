@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-copy="photo_rules.page_title">Fotoğraf yükleme kuralları · Hatlas</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/hatlas-logo.svg">
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Built by `npm run css` from css/pages.src.css -->
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/copy.js" defer></script>
+  <script src="js/usage.js" defer></script>
+  <script src="js/soon.js" defer></script>
+</head>
+<!-- Photo upload rules (Figma "Desktop - 11", node 15:106; was index.html#fotograf-kurallari until 2026-11-18):
+     a 2x2 grid of rules, each doodle beside its text; shown before a signed-in contributor's first photo -->
+<body class="min-h-dvh text-[17px] leading-relaxed">
+  <!-- The top bar (same on every page; the text is in copy/tr.toml [common]) -->
+  <header class="flex h-16 shrink-0 items-center gap-6 border-b border-overlay bg-panel px-6 md:gap-8 md:px-8">
+    <a href="./" class="shrink-0" aria-label="Hatlas ana sayfası" data-copy-attr="aria-label=common.home_label"><img src="assets/hatlas-logo.svg" width="72" height="24" alt="Hatlas"></a>
+    <nav class="flex gap-1 text-[15px] font-medium text-ink-2">
+      <a href="./" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink" data-copy="common.nav_map">Harita</a><a href="katalog.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_catalog">Veri kataloğu</a><a href="sorunlar.html" class="rounded-md px-3 py-2 hover:bg-raised hover:text-ink hidden sm:inline" data-copy="common.nav_issues">Sorunlar</a>
+    </nav>
+    <div class="flex-1"></div>
+    <a href="katki.html" class="inline-flex h-10 shrink-0 items-center rounded-lg bg-accent px-4 text-[15px] font-semibold text-white hover:bg-accent-hover" data-copy="common.contribute">Katkıda bulun</a>
+  </header>
+
+  <main class="mx-auto flex w-full max-w-[1240px] flex-col gap-10 px-6 pt-10 pb-28 md:px-12 lg:pt-14">
+    <a href="./" class="w-fit text-[15px] text-ink-2 hover:text-ink" data-copy="common.back_to_map">← Haritaya dön</a>
+
+    <section class="flex flex-col gap-12" aria-labelledby="rulesTitle">
+      <h1 id="rulesTitle" class="text-3xl font-medium" data-copy="photo_rules.title">Fotoğraf yükleme kuralları</h1>
+      <ol class="grid gap-x-20 gap-y-14 min-[1180px]:grid-cols-2 max-[1179px]:max-w-[680px]">
+        <li class="grid items-center gap-5 min-[560px]:grid-cols-[180px_minmax(0,1fr)] min-[560px]:gap-8">
+          <img class="h-auto max-w-full min-[560px]:justify-self-center" src="assets/rules/rule-sexual.svg" width="150" height="129" alt="">
+          <div class="max-w-[440px] leading-relaxed text-ink-2 [&_p+p]:mt-4 [&_p+ul]:mt-4">
+            <p data-copy="photo_rules.sexual">Yüklediğiniz fotoğraflarda cinsel içerik veya müstehcenlik bulunmamalıdır; örneğin:</p>
+            <ul class="list-disc pl-[22px]">
+              <li data-copy="photo_rules.sexual_1">İnsanlara ait çıplak veya mahrem görüntüler</li>
+              <li data-copy="photo_rules.sexual_2">Hayvanlara ait müstehcen görüntüler</li>
+              <li data-copy="photo_rules.sexual_3">Gerçek veya kurgusal karakterlerin cinsel içerikli çizimleri</li>
+            </ul>
+          </div>
+        </li>
+        <li class="grid items-center gap-5 min-[560px]:grid-cols-[180px_minmax(0,1fr)] min-[560px]:gap-8">
+          <img class="h-auto max-w-full min-[560px]:justify-self-center" src="assets/rules/rule-owner.svg" width="179" height="130" alt="">
+          <div class="max-w-[440px] leading-relaxed text-ink-2 [&_p+p]:mt-4 [&_p+ul]:mt-4">
+            <p data-copy="photo_rules.owner">Fotoğrafı bizzat siz çekmiş olmalı ya da paylaşmak için yazılı izne sahip olmalısınız. Hatlas’a yüklenen fotoğraflar CC BY-SA 4.0 lisansıyla paylaşılır.</p>
+            <p data-copy="photo_rules.owner_not">Fotoğraflarda şu kişisel ve hassas bilgiler yer almamalıdır:</p>
+            <ul class="list-disc pl-[22px]">
+              <li data-copy="photo_rules.owner_1">Araç plakaları</li>
+              <li data-copy="photo_rules.owner_2">Çocukların yüzleri veya çocuklara ait kişisel bilgiler</li>
+              <li data-copy="photo_rules.owner_3">Kimlik, vergi numarası, telefon numarası gibi kişisel bilgiler</li>
+            </ul>
+          </div>
+        </li>
+        <li class="grid items-center gap-5 min-[560px]:grid-cols-[180px_minmax(0,1fr)] min-[560px]:gap-8">
+          <img class="h-auto max-w-full min-[560px]:justify-self-center" src="assets/rules/rule-real.svg" width="147" height="139" alt="">
+          <div class="max-w-[440px] leading-relaxed text-ink-2 [&_p+p]:mt-4 [&_p+ul]:mt-4">
+            <p data-copy="photo_rules.real">Fotoğraf gerçek bir kare olmalı ve yanıltıcı biçimde değiştirilmemelidir. Hafif renk düzenlemeleri sorun değildir; ancak şunlar kabul edilmez:</p>
+            <ul class="list-disc pl-[22px]">
+              <li data-copy="photo_rules.real_1">Fotomanipülasyon veya montaj yapılmış görüntüler</li>
+              <li data-copy="photo_rules.real_2">Mimari çizimler</li>
+              <li data-copy="photo_rules.real_3">Kağıt üzerine yapılmış çizimler</li>
+              <li data-copy="photo_rules.real_4">Posterleştirme gibi ağır filtre uygulanmış gerçek fotoğraflar</li>
+              <li data-copy="photo_rules.real_5">Belediye afişleri, tanıtım görselleri vb.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="grid items-center gap-5 min-[560px]:grid-cols-[180px_minmax(0,1fr)] min-[560px]:gap-8">
+          <img class="h-auto max-w-full min-[560px]:justify-self-center" src="assets/rules/rule-place.svg" width="137" height="152" alt="">
+          <div class="max-w-[440px] leading-relaxed text-ink-2 [&_p+p]:mt-4 [&_p+ul]:mt-4">
+            <p data-copy="photo_rules.place">Raylar, depolar, tüneller gibi girilmesi yasak alanlarda ya da askeri bölgeler gibi fotoğraf çekmenin yasak olduğu yerlerde çekilmiş fotoğrafları yüklemeyin. Bir fotoğraf uğruna kendinizi tehlikeye atmayın.</p>
+          </div>
+        </li>
+      </ol>
+      <!-- Uploading isn't built yet; accepting will be stored on the account with the rules' version -->
+      <div class="flex flex-col gap-8">
+        <button type="button" class="inline-flex h-11 w-fit items-center rounded-lg bg-accent px-5 font-semibold text-white hover:bg-accent-hover" data-soon data-copy="photo_rules.accept">Kuralları okudum, kabul ediyorum</button>
+        <footer class="flex max-w-[900px] items-start gap-4 md:items-center">
+          <img class="h-[34px] w-24 shrink-0 rounded" src="assets/cc-by-sa.png" width="96" height="34" alt="CC BY-SA 4.0">
+          <p class="text-[15px] leading-relaxed text-ink-2" data-copy="common.cc_note">Katkılarınız herkesin yararlanabilmesi için CC BY-SA 4.0 lisansıyla paylaşılır. Gönderdiğiniz değişikliklerin ayrıca izin alınmadan düzenlenebileceğini veya kaldırılabileceğini kabul etmiş olursunuz.</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
